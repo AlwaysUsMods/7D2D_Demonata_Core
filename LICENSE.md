@@ -1,8 +1,9 @@
-# ALWAYS US MODS METADATA LICENSE v1.0
+# ALWAYS US MODS METADATA LICENSE v2.0
 
-Last Updated: 2026-05-04
+**Last Updated:** 2026-07-12
+**Official SPDX Identifier:** `LicenseRef-AlwaysUsMods-Metadata-2.0`
 
-This license applies to the **original metadata structures, documentation formats, and organizational logic** created by **Always Us Mods** for use in XML-based game modding projects, including (but not limited to) those developed for _7 Days to Die_.
+This license applies to the **original metadata structures, documentation formats, and organizational logic** created by **Always Us Mods**. Originally developed for XML-based game modding, these structures have been generalized for use in configuration files and code environments (including Lua and C#). They are designed to remain applicable to any project, program, or modding community.
 
 ---
 
@@ -10,17 +11,19 @@ This license applies to the **original metadata structures, documentation format
 
 The following components are **protected under this license** and may **not** be reused, modified, or redistributed—publicly or privately—**without clear attribution**:
 
-- Structured metadata blocks and top-of-file headers:
-  `@version`, `@date`, `@group`, `@description`, `@xref`, `@notes`
-- Comment-based section headers and formatting syntax:
-  `<!-- ==================== SECTION: EXAMPLE ==================== -->`
-- In-line documentation style, explanation language, and formatting
-- Cross-referencing conventions between files:
-  `@xref file.xml → Section Name`
-- Naming systems for patch sections, mod groups, or internal IDs
-- Logical file structure and organizational methodology (e.g. by biome, difficulty, time-of-day, etc.)
+* Structured metadata blocks and top-of-file headers.
 
-These elements are **original to Always Us Mods** and are **not part of the vanilla XML schema** provided by the game developer or general modding APIs.
+* The core metadata tagging convention, including but not limited to: `@version`, `@date`, `@author`, `@group`, `@description`, `@notes`, `@xref`, and `@ref`.
+
+* Comment-based section headers (`SECTION:`) and their associated formatting syntax.
+
+* In-line documentation style, explanation language, and formatting.
+
+* Cross-referencing conventions and intra-file reference logic.
+
+* Logical file structure and organizational methodology.
+
+These elements are **original to Always Us Mods** and are **not part of the vanilla engine schemas** provided by game developers or general modding APIs.
 
 ---
 
@@ -28,35 +31,56 @@ These elements are **original to Always Us Mods** and are **not part of the vani
 
 You are free to:
 
-- Use standard XML syntax and modding structures
-- Reference vanilla game data (entity names, values, loot tables, etc.)
-- Apply similar logic or functions (e.g., modifying recipes, spawn rates)
-- Develop your own documentation or metadata systems
-- Learn from this mod’s structure for private use or experimentation
+* Use standard programming syntax (e.g., XML, Lua, C#) and native modding structures.
+
+* Reference vanilla game data, external APIs, engine functions, or framework hooks.
+
+* Apply similar logic or functions to your code.
+
+* Develop your own documentation or metadata systems.
+
+* Learn from this structure for private use or experimentation.
 
 This license **does not** restrict your ability to:
 
-- Create similar mods from scratch
-- Build on public modding knowledge
-- Share similar ideas in new and original formats
+* Create similar projects from scratch.
 
-Just don’t copy the _how_ unless you credit the _who_.
+* Build on public modding or programming knowledge.
+
+* Share similar ideas in new and original formats.
+
+Just don’t copy the *how* unless you credit the *who*.
 
 ---
 
-## 📌 ATTRIBUTION REQUIREMENTS
+## 📌 ATTRIBUTION & SPDX REQUIREMENTS
 
-Want to reuse the metadata style, organization, or documentation format? No problem—just credit it.
+If you reuse this metadata style, organization, or documentation format, you must provide credit and correctly tag your files.
 
-**Required attribution format:**
+### 1. General Attribution
+
+You must include the following statement in your project's `README`, on your project's description page, or in your master license file:
 
 > "Based in part on structural documentation by Always Us Mods."
 
-You can include this:
+### 2. File-Level SPDX Implementation
 
-- In your README
-- In top-of-file comments
-- On your mod’s description page
+To ensure automated tooling and linters can recognize the license status of your files, you must include the official SPDX identifier in the **top-of-file metadata block** of any file utilizing this standard.
+
+Add the following line to your header block:
+`SPDX-License-Identifier: LicenseRef-AlwaysUsMods-Metadata-2.0`
+
+### 3. Handling Dual Licenses (Code vs. Metadata)
+
+Because this license governs the *metadata tagging convention itself* and not your underlying project code, your files will likely be dual-licensed.
+
+If your code is released under its own license (e.g., MIT, GPL-3.0), simply include **both** SPDX tags in your file header on separate lines.
+
+**Example Implementation:**
+
+> `@version     1.0.0`
+> `SPDX-License-Identifier: MIT` *(covers your code)*
+> `SPDX-License-Identifier: LicenseRef-AlwaysUsMods-Metadata-2.0` *(covers this metadata structure)*
 
 If you’re unsure whether your use qualifies—**ask first**. It’s easier than apologizing later.
 
@@ -66,10 +90,13 @@ If you’re unsure whether your use qualifies—**ask first**. It’s easier tha
 
 The following actions **require explicit written permission** from Always Us Mods:
 
-- Reposting or distributing any file structure, documentation format, or comment style based on this system without attribution
-- Using this metadata system as the basis for another public-facing mod without credit
-- Removing or stripping documentation and re-releasing with minor edits
-- Using any part of this structure for **commercial or paid content**
+* Reposting or distributing any file structure, documentation format, or comment style based on this system without attribution.
+
+* Using this metadata system as the basis for another public-facing project without credit.
+
+* Removing or stripping documentation and re-releasing with minor edits.
+
+* Using any part of this structure for **commercial or paid content**.
 
 ---
 
@@ -77,18 +104,19 @@ The following actions **require explicit written permission** from Always Us Mod
 
 This license is a formal declaration of **authorship and intellectual property** under U.S. and international copyright law.
 
-It does **not** claim ownership of the game engine, vanilla assets, or XML syntax.
+It does **not** claim ownership of any game engines, vanilla assets, or programming languages.
 
 However, it **does** protect the **unique expression** of:
 
-- Metadata formatting
-- Documentation structure
-- Section organization
-- Commentary and explanation style
+* Metadata formatting and tagging conventions.
 
-All rights reserved where applicable.
-This license operates independently of the licensing terms of _7 Days to Die_ or any third-party modding frameworks.
-This license acknowledges the EULA of 7 Days to Die but does not grant any additional rights to The Fun Pimps beyond what that EULA defines.
+* Documentation structure.
+
+* Section organization.
+
+* Commentary and explanation style.
+
+All rights reserved where applicable. This license operates independently of the licensing terms of any specific game or third-party frameworks.
 
 ---
 
@@ -96,11 +124,13 @@ This license acknowledges the EULA of 7 Days to Die but does not grant any addit
 
 You may:
 
-- Use this system as learning material
-- Copy it into private projects
-- Modify it for personal, non-distributed use
+* Use this system as learning material.
 
-But if you’re publishing a mod and borrowing the structure, **credit it.** It’s just respectful.
+* Copy it into private projects.
+
+* Modify it for personal, non-distributed use.
+
+But if you’re publishing a project and borrowing the structure, **credit it.** It’s just respectful.
 
 ---
 
@@ -109,9 +139,7 @@ But if you’re publishing a mod and borrowing the structure, **credit it.** It�
 For questions, collaboration, or permission requests, reach out to:
 
 **[Always Us Mods](mailto:contact.demonatagaming@alwaysusstudios.com)**
-
 **[YouTube](https://www.youtube.com/@demonatagaming)**
-
 **[NexusMods](https://www.nexusmods.com/profile/AlwaysUsMods)**
 
 ---
@@ -123,31 +151,16 @@ If you're inspired, that’s great—**just don’t plagiarize**.
 
 ---
 
-## 🔖 TL;DR
+### ⚠️ GENERAL EULA SCOPE LIMITATION NOTICE
 
-- You **can’t** copy this structure without credit.
-- You **can** use standard XML and mod logic.
-- You **must** credit if you reuse this formatting or metadata system.
-- When in doubt? **Ask first.** No drama necessary.
+In accordance with the End User License Agreements (EULAs) of the respective platforms and engines this standard interfaces with, I acknowledge that developers may use or adapt content created using their software and tools.
 
----
+However, I do **not** grant any engine developer, studio, or affiliated party any rights to reuse, repurpose, or adapt this structural metadata content in **any future games, platforms, or software titles** unless I have:
 
-### 📄 NOTE ON TFP LICENSE AGREEMENT
+* Installed or used said software.
 
-By using the 7 Days to Die software, I acknowledge that The Fun Pimps reserve the right to use or adapt user-created content—including metadata formats and file structures—within their own software ecosystem as outlined in their EULA. This license does not override that agreement, but it does protect this work from unauthorized use by third parties outside of the TFP domain.
+* Accepted a new EULA that grants additional rights.
 
----
-
-### ⚠️ EULA Scope Limitation Notice
-
-In accordance with the 7 Days to Die End User License Agreement (EULA), I acknowledge that The Fun Pimps may use or adapt mod content—including metadata structure and documentation—created using their software and tools.
-
-However, this license grant is **explicitly limited** to content used in connection with **7 Days to Die** and its directly associated services.
-
-I do **not** grant The Fun Pimps—or any affiliated party—any rights to reuse, repurpose, or adapt this content in **any future games, platforms, or software titles**, including sequels, remakes, spin-offs, or other projects derived from the 7 Days to Die intellectual property, unless I have:
-
-- Installed or used said software,
-- Accepted a new EULA that grants additional rights, or
-- Given **explicit written permission** for reuse.
+* Given **explicit written permission** for reuse.
 
 All rights are otherwise reserved under applicable copyright law.
