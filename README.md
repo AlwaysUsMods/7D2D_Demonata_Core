@@ -1,5 +1,7 @@
 # Demonata Core
 
+## **DEMONATA CORE IS CURRENTLY NOT COMPATIBLE WITH GAME VERSION 3.0 AND THERE IS CURRENTLY NO TIMELINE ON WHEN IT WILL BE**
+
 A progression-first overhaul that restores sandbox agency, tightens balance, and dials up biome identity for 7 Days to Die.
 
 ## Quick Start
