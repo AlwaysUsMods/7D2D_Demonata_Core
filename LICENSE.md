@@ -1,6 +1,6 @@
-# ALWAYS US MODS METADATA LICENSE v2.0
+# ALWAYS US MODS METADATA LICENSE v2.0  
 
-**Last Updated:** 2026-07-12
+**Last Updated:** 2026-07-12  
 **Official SPDX Identifier:** `LicenseRef-AlwaysUsMods-Metadata-2.0`
 
 This license applies to the **original metadata structures, documentation formats, and organizational logic** created by **Always Us Mods**. Originally developed for XML-based game modding, these structures have been generalized for use in configuration files and code environments (including Lua and C#). They are designed to remain applicable to any project, program, or modding community.
