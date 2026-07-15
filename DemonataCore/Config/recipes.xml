@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Demonata Gaming Metadata Format ©2025
+  SPDX-License-Identifier: LicenseRef-DemonataGaming-Metadata-1.0
+  See LICENSE.md for terms.
+-->
+<!--
+  ==================================================
+  Recipes Modification - Adjust Recipe Costs and Quality Scaling
+  @version    1.2.0
+  @date       2025-12-17
+  @author     Demonata Gaming
+
+  @group      RecipeAdjustments
+  @description
+    Reduces recipe cost scaling with quality, adjusts ingredient counts
+    for dynamite, raw meat, rotting flesh, and crops, and reworks wood-based
+    recipes to include nails for realism and consistency. Creates new honey and
+    water recipes, removed the apiary smoker and empty jars.
+  @notes
+    - Decreases ingredient count scaling for guns, melee, and armor recipes.
+    - Changes thrown dynamite recipe count to 2.
+    - Standardizes raw meat and rotting flesh ingredient requirements.
+    - Adjusts planted crop ingredient count to 4 for all related recipes.
+    - Creates a empty jar attrition system by removing them from crafting
+      and creating new recipes that require empty jars.
+  ==================================================
+-->
+<configs>
+  <!--
+  ===============================
+  SECTION: RECIPE QUALITY COST SCALING
+  ===============================
+  @group    RecipeQualityScaling
+  @desc
+    Reduces ingredient count increase as recipe quality improves for
+    guns, melee weapons, and armor.
+-->
+  <set xpath="/recipes/recipe[not(contains(@name, 'Bot')) and (contains(@name, 'gun') or contains(@name, 'melee') or contains(@name, 'armor'))]/effect_group/passive_effect[@name='CraftingIngredientCount']/@level">
+    1,6</set>
+  <set xpath="/recipes/recipe[not(contains(@name, 'Bot')) and (contains(@name, 'gun') or contains(@name, 'melee') or contains(@name, 'armor'))]/effect_group/passive_effect[@name='CraftingIngredientCount']/@value">
+    0.75,0.75</set>
+  <!--
+  ===============================
+  SECTION: SPECIFIC RECIPE INGREDIENT COUNTS
+  ===============================
+  @group    RecipeIngredientAdjustments
+  @desc
+    Adjusts specific recipe ingredient counts to balance crafting.
+-->
+  <!-- Thrown dynamite requires 2 items instead of default -->
+  <set xpath="/recipes/recipe[@name='thrownDynamite']/@count">2</set>
+  <!-- Raw meat recipes now require 8 units -->
+  <set xpath="/recipes/recipe/ingredient[@name='foodRawMeat']/@count">8</set>
+  <!-- Rotten flesh recipes now require 10 units -->
+  <set xpath="/recipes/recipe/ingredient[@name='foodRottingFlesh']/@count">10</set>
+  <!-- All planted crop recipes require 4 units of ingredients -->
+  <set xpath="/recipes/recipe[contains(@name, 'planted')]/ingredient/@count">4</set>
+  <!--
+  ===============================
+	SECTION: NAILS IN RECIPES
+  ===============================
+	@group    NailRecipeAdjusts
+	@desc
+    Adds nails to wood-based crafting recipes to improve realism and enable refund on harvest.
+	@xref   blocks.xml → SECTION: WOOD BLOCK ADJUSTMENTS
+	@xref   loot.xml → MAIN: Increase Nails Loot Chance
+  -->
+  <append xpath="/recipes/recipe[starts-with(@name, 'wood')or (contains(@name, 'whitePicketFenceSheet'))or (contains(@name, 'cntCabinetBottom'))or (contains(@name, 'cntCupboardCabinetRedTopClosed'))or (contains(@name, 'cntWoodDesk01Closed'))or (contains(@name, 'cntSecureStorageChest'))or (contains(@name, 'secureDoorWooden'))or (contains(@name, 'endTable'))or (contains(@name, 'ladderWood'))or (contains(@name, 'window03Wood'))or (contains(@name, 'cellarDoorDoubleWood'))and not(contains(@name, 'woodChair1'))and not(contains(@name, 'woodTable'))and not(contains(@name, 'woodFrame'))or (contains(@name, 'oldWoodDoor'))or (contains(@name, 'oldWoodDoorDouble'))or (contains(@name, 'cntWoodWritableCrate'))or (contains(@name, 'shuttersWoodBlockVariantHelper'))]">
+    <ingredient name="resourceNail" count="4" />
+  </append>
+  <!--
+  ===============================
+  SECTION: LOG BLOCK RECIPE CHANGES
+  ===============================
+  @group    NailRecipeAdjusts
+  @desc
+    Removes nails from the log block recipe.
+	@xref     blocks.xml → SECTION: LOG BLOCK ADJUSTMENTS
+  -->
+  <remove xpath="/recipes/recipe[@name='woodLogPillar100']/ingredient[@name='resourceNail']" />
+  <!--
+  ===============================
+  SECTION: FRAME SHAPES RECIPE CHANGES
+  ===============================
+  @group    FrameHelperBlockChanges
+  @desc
+    Adds nails to the ingredient list for wood frames.
+  @xref     blocks.xml → SECTION: WOOD BLOCK ADJUSTMENTS
+  -->
+  <append xpath="/recipes/recipe[@name='frameShapes:VariantHelper']">
+    <ingredient name="resourceNail" count="8" />
+  </append>
+  <!--
+  ===============================
+  SECTION: EMPTY JARS HONEY AND WATER CHANGES
+  ===============================
+  @group    Collectors
+  @desc
+    Remove empty jars from crafting to enable Jar Input/Attrition Loop.
+    Create Honey and Water recipes for Apiary and Dew Collector Conversions.
+  @xref     blocks.xml → SECTION: APIARY AND DEW COLLECTORS
+  @xref     progression.xml → SECTION: HONEY CRAFTING UNLOCK
+  -->
+  <!-- Remove Empty Jars from the crafting system. -->
+  <remove xpath="recipes/recipe[@name='drinkJarEmpty']"></remove>
+  <!-- Create a Honey recipe for each flower group. -->
+  <append xpath="/recipes">
+    <recipe name="foodHoney" count="1" craft_area="apiary" craft_time="7200" tags="foodHoney,learnable">
+      <ingredient name="drinkJarEmpty" count="1"/>
+      <ingredient name="resourceCropChrysanthemumPlant" count="10"/>
+    </recipe>
+    <recipe name="foodHoney" count="1" craft_area="apiary" craft_time="7200" tags="foodHoney,learnable">
+      <ingredient name="drinkJarEmpty" count="1"/>
+      <ingredient name="resourceCropGoldenrodPlant" count="10"/>
+    </recipe>
+    <recipe name="foodHoney" count="1" craft_area="apiary" craft_time="7200" tags="foodHoney,learnable">
+      <ingredient name="drinkJarEmpty" count="1"/>
+      <ingredient name="resourceCropCottonPlant" count="10"/>
+    </recipe>
+  </append>
+  <!-- Create Water Recipes, one for murky water and one for clean water. -->
+  <append xpath="/recipes">
+    <recipe name="drinkJarRiverWater" count="2" craft_area="dew_collector" craft_time="28800">
+      <ingredient name="drinkJarEmpty" count="2"/>
+    </recipe>
+    <recipe name="drinkJarBoiledWater" count="2" craft_area="dew_collector" craft_time="28800" craft_tool="toolDewFilter">
+      <ingredient name="drinkJarEmpty" count="2"/>
+    </recipe>
+  </append>
+  <!-- Remove Apiary Smoker from recipes -->
+  <remove xpath="/recipes/recipe[@name='toolApiarySmoker']"></remove>
+</configs>
